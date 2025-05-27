@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  backend:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - /var/run/libvirt:/var/run/libvirt  # Mount libvirt socket
+      - /etc/libvirt:/etc/libvirt          # Optional: Config access
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    privileged: true                       # Required for virtualization access
+    environment:
+      - LIBVIRT_DEFAULT_URI=qemu:///system
+      - DISPLAY=host.docker.internal:0

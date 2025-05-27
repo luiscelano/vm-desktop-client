@@ -1,0 +1,31 @@
+FROM python:3.11-slim
+
+# Install libvirt client libs + python bindings
+# RUN apt-get update && apt-get install -y \
+#     libvirt-clients \
+#     libvirt-dev \
+#     gcc \
+#     pkg-config \
+#     && pip install libvirt-python flask \
+#     && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && \
+    apt-get install -y \
+        libvirt-dev \
+        libvirt-daemon-system \
+        libvirt-clients \
+        virtinst \
+        qemu-kvm \
+        python3-tk \
+        x11-apps \
+        && rm -rf /var/lib/apt/lists/*
+
+# Add your Flask app
+WORKDIR /app
+COPY . .
+
+# Expose port for Flask
+EXPOSE 8080
+
+# Start Flask
+CMD ["python", "app2.py"]

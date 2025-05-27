@@ -27,8 +27,8 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Set environment variables for X11 GUI support
-ENV DISPLAY=:0
-ENV LIBVIRT_DEFAULT_URI=qemu+tcp://192.168.64.2/system
+#ENV DISPLAY=:0
+#ENV LIBVIRT_DEFAULT_URI=qemu+tcp://192.168.64.2/system
 
 # Set working directory
 WORKDIR /app

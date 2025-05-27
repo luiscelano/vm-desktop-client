@@ -165,7 +165,7 @@ class VirtualizationClient:
     def connect_to_libvirt(self):
         """Conectar a libvirt"""
         try:
-            self.conn = libvirt.open("qemu:///system")
+            self.conn = libvirt.open("qemu+tcp://192.168.64.2/system")
             if self.conn is None:
                 messagebox.showerror("Error", "No se pudo conectar a libvirt")
         except libvirt.libvirtError as e:
